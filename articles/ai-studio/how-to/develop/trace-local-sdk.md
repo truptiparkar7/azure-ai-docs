@@ -36,7 +36,7 @@ To enable tracing, first ensure your project has an attached Application Insight
 Make sure to install following packages via
 
 ```
-pip install opentelemetry
+pip install opentelemetry-sdk
 pip install azure-core-tracing-opentelemetry
 pip install azure-monitor-opentelemetry
 ```
@@ -103,7 +103,7 @@ Install the package `azure-ai-inference` using your package manager, like pip:
 Install the Azure Core OpenTelemetry Tracing plugin, OpenTelemetry, and the OTLP exporter for sending telemetry to your observability backend. To install the necessary packages for Python, use the following pip commands:
 
 ```bash
-pip install opentelemetry 
+pip install opentelemetry-sdk
 
 pip install opentelemetry-exporter-otlp 
 ```
