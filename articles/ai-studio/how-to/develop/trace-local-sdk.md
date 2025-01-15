@@ -273,7 +273,7 @@ To identify your service via a unique ID in Application Insights, you can use th
 
 To set up the service name property, you can do so directly in your application code by following the steps, see  [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` prior to deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
 
-To query trace data for a given service name, query for the `cloud_roleName` property. Add the following line to the KQL query you use within your Online Evaluation set-up:
+To query trace data for a given service name, query for the `cloud_roleName` property. In case you are leveraging Online Evaluation, add the following line to the KQL query you use within your Online Evaluation set-up:
 
 ```sql
 | where cloud_RoleName == "service_name"
