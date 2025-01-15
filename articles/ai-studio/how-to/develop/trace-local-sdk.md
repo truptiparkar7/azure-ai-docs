@@ -267,6 +267,18 @@ To configure OpenTelemetry and enable Azure AI Inference tracing follow these st
 
 To trace your own custom functions, you can leverage OpenTelemetry, you'll need to instrument your code with the OpenTelemetry SDK. This involves setting up a tracer provider and creating spans around the code you want to trace. Each span represents a unit of work and can be nested to form a trace tree. You can add attributes to spans to enrich the trace data with additional context. Once instrumented, configure an exporter to send the trace data to a backend for analysis and visualization. For detailed instructions and advanced usage, refer to the [OpenTelemetry documentation](https://opentelemetry.io/docs/). This will help you monitor the performance of your custom functions and gain insights into their execution.
 
+### Using service name in trace data
+
+To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is particularly useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them. For example, lets say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Groundedness**. You can use the service name to differentiate between the applications in your Online Evaluation configurations.
+
+To set up the service name property, you can do so directly in your application code by following the steps, see  [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` prior to deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
+
+To query trace data for a given service name, query for the `cloud_roleName` property. Add the following line to the KQL query you use within your Online Evaluation set-up:
+
+```sql
+| where cloud_RoleName == "service_name"
+```
+
 ## Enable Tracing for Langchain
 
 ### [Python](#tab/python)
